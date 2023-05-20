@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Todo</title>
+    <style>
+      .done {
+        text-decoration: line-through;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>TODO Application !</h1>
+    <form action="/add-todo" method="post">
+      <input type="text" name="todo" placeholder="enter todo" />
+      <button type="submit">Add</button>
+
+      <% items.forEach((item,idx)=>{ %>
+      <li class="<%= item.completed ? 'done' : '' %>">
+        <%= item.label %>
+        <button
+        formaction="/remove-todo"
+        type="submit"
+        value="<%= idx %>"
+        name="delete"
+        >
+        remove
+        </button>
+        
+        <button
+            formaction="/completed-todo"
+            type="submit"
+            value="<%= idx %>"
+            name="id"
+        >
+            <%= item.completed ? 'Undo' : 'MarkDone' %>
+        </button>
+    </li>
+      <% }) %>
+    </form>
+  </body>
+</html>
