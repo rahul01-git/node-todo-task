@@ -14,30 +14,30 @@
   <body>
     <h1>TODO Application !</h1>
     <form action="/add-todo" method="post">
-      <input type="text" name="todo" placeholder="enter todo" />
+      <input type="text" name="todo" placeholder="enter todo"/>
       <button type="submit">Add</button>
 
       <% items.forEach((item,idx)=>{ %>
-      <li class="<%= item.completed ? 'done' : '' %>">
-        <%= item.label %>
+      <li class="<%= item.iscomplete ? 'done' : '' %>">
+        <%= item.title %>
         <button
-        formaction="/remove-todo"
-        type="submit"
-        value="<%= idx %>"
-        name="delete"
+          formaction="/remove-todo"
+          type="submit"
+          value="<%= item.id %>"
+          name="id"
         >
-        remove
+          remove
         </button>
-        
+
         <button
-            formaction="/completed-todo"
-            type="submit"
-            value="<%= idx %>"
-            name="id"
+          formaction="/completed-todo"
+          type="submit"
+          value="<%=item.id%>"
+          name="id"
         >
-            <%= item.completed ? 'Undo' : 'MarkDone' %>
+          <%= item.iscomplete ? 'Undo' : 'MarkDone' %>
         </button>
-    </li>
+      </li>
       <% }) %>
     </form>
   </body>
